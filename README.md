@@ -12,12 +12,17 @@
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
+| id                   | integer    | primary_key: true              | 
 | nickname             | string     | null: false                    |
 | email                | string     | null: false , unique: true     |
 | encrypted_password   | string     | null: false                    |
 | first_name           | string     | null: false                    |
 | last_name            | string     | null: false                    |
+| first_name_kana      | string     | null: false                    |
+| last_name_kana       | string     | null: false                    |
 | birthday             | date       | null: false                    |
+| created_at           | datetime   | 自動生成                        |
+| updeted_at           | datetime   | 自動生成                        |
 
 ### Association
 - has_many :products
@@ -27,14 +32,18 @@
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
+| id                     | integer    | primary_key: true              | 
 | name                   | string     | null: false                    |
 | description            | text       | null: false                    |
 | price                  | integer    | null: false                    |
-| user_id                | references | null: false, foreign_key: true |
+| user                   | references | null: false, foreign_key: true |
 | status_id              | integer    | null: false                    |
+| category_id            | integer    | null: false                    |
 | shipping_fee_status_id | integer    | null: false                    |
 | prefecture_id          | integer    | null: false                    |
 | scheduled_delivery_id  | integer    | null: false                    |
+| created_at             | datetime   | 自動生成                        |
+| updated_at             | datetime   | 自動生成                        |
 
 
 
@@ -46,8 +55,11 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| product_id    | references | null: false, foreign_key: true |
+| id            | integer    | primary_key: true              | 
+| user          | references | null: false, foreign_key: true |
+| product       | references | null: false, foreign_key: true |
+| created_at    | datetime   | 自動生成                        |
+| updated_at    | datetime   | 自動生成                        |
 
 ### Association
 - belongs_to :user
@@ -58,13 +70,16 @@
 
 | Column       | Type       | Options                        |
 | -------------| ---------- | ------------------------------ |
+| id           | integer    | primary_key: true              | 
 | postal_code  | string     | null: false                    |
 | prefecture_id| integer    | null: false                    |
 | city         | string     | null: false                    |
 | address      | string     | null: false                    |
 | building     | string     |                                |
 | phone_number | string     | null: false                    |
-| order_id     | references | null: false, foreign_key: true |
+| order        | references | null: false, foreign_key: true |
+| created_at   | datetime   | 自動生成                        |
+| updated_at   | datetime   | 自動生成                        |
 
 
 ### Association
