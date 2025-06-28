@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  price: 1
+  user: one
+  status_id: 1
+  category_id: 1
+  shipping_fee_status_id: 1
+  prefecture_id: 1
+  scheduled_delivery_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  price: 1
+  user: two
+  status_id: 1
+  category_id: 1
+  shipping_fee_status_id: 1
+  prefecture_id: 1
+  scheduled_delivery_id: 1

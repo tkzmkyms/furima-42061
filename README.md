@@ -22,7 +22,7 @@
 | last_name_kana       | string     | null: false                    |
 | birthday             | date       | null: false                    |
 | created_at           | datetime   | 自動生成                        |
-| updeted_at           | datetime   | 自動生成                        |
+| updated_at           | datetime   | 自動生成                        |
 
 ### Association
 - has_many :products
