@@ -1,29 +1,78 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
+  <%# --- エラーメッセージ表示（重複防止） --- %>
+  <% if resource.errors.any? %>
+    <div id="error_explanation">
+      <% resource.errors.full_messages.uniq.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# --- ニックネーム --- %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :nickname, 'ニックネーム' %><br />
+    <%= f.text_field :nickname, value: f.object.nickname %>
   </div>
 
+  <%# --- 姓（全角） --- %>
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :last_name, '姓（全角）' %><br />
+    <%= f.text_field :last_name, value: f.object.last_name %>
+  </div>
+
+  <%# --- 名（全角） --- %>
+  <div class="field">
+    <%= f.label :first_name, '名（全角）' %><br />
+    <%= f.text_field :first_name, value: f.object.first_name %>
+  </div>
+
+  <%# --- 姓カナ（全角） --- %>
+  <div class="field">
+    <%= f.label :last_name_kana, '姓カナ（全角）' %><br />
+    <%= f.text_field :last_name_kana, value: f.object.last_name_kana %>
+  </div>
+
+  <%# --- 名カナ（全角） --- %>
+  <div class="field">
+    <%= f.label :first_name_kana, '名カナ（全角）' %><br />
+    <%= f.text_field :first_name_kana, value: f.object.first_name_kana %>
+  </div>
+
+  <%# --- 生年月日 --- %>
+  <div class="field">
+    <%= f.label :birthday, '生年月日' %><br />
+    <%= f.date_select :birthday, start_year: Date.today.year - 100, end_year: Date.today.year, default: Date.new(2000, 1, 1) %>
+  </div>
+
+  <%# --- メールアドレス --- %>
+  <div class="field">
+    <%= f.label :email, 'メールアドレス' %><br />
+    <%= f.email_field :email, autocomplete: "email", value: f.object.email %>
+  </div>
+
+  <%# --- パスワード --- %>
+  <div class="field">
+    <%= f.label :password, 'パスワード' %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
+  <%# --- パスワード（確認） --- %>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, 'パスワード（確認）' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <%# --- 登録ボタン --- %>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
