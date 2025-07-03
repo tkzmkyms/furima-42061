@@ -1,5 +1,12 @@
 <h2>ログイン</h2>
 
+<%# --- Deviseのエラーメッセージ表示（メールアドレスやパスワードの間違い）--- %>
+<% if flash[:alert] %>
+  <div id="flash_alert">
+    <p><%= flash[:alert] %></p>
+  </div>
+<% end %>
+
 <%# --- エラーメッセージ表示 --- %>
 <% if resource.errors.any? %>
   <div id="error_explanation">
