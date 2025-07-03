@@ -7,6 +7,11 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      user:
+        email: "Eメール"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
   date:
     abbr_day_names:
     - 日
@@ -182,3 +187,23 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+
+  devise:
+    failure:
+      invalid: 'メールアドレスまたはパスワードが違います。'
+    sessions:
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+    registrations:
+      signed_up: 'アカウント登録が完了しました。'
+    passwords:
+      send_instructions: 'パスワード再設定の案内メールを送信しました。'
+    errors:
+      messages:
+        email_blank: "Eメールを入力してください"
+        email_invalid: "Eメールは不正な値です"
+        email_taken: "Eメールはすでに存在します"
+        password_blank: "パスワードを入力してください"
+        password_too_short: "パスワードは6文字以上で入力してください"
+        password_confirmation_mismatch: "パスワード（確認用）とパスワードの入力が一致しません"
