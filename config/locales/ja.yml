@@ -1,17 +1,37 @@
----
 ja:
   activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
     attributes:
       user:
+        nickname: "ニックネーム"
+        last_name: "名字"
+        first_name: "名前"
+        last_name_kana: "名字カナ"
+        first_name_kana: "名前カナ"
         email: "Eメール"
         password: "パスワード"
+        birthday: "生年月日"
         password_confirmation: "パスワード（確認用）"
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              blank: "を入力してください"
+            last_name:
+              blank: "を入力してください"
+              invalid: "は全角（漢字・ひらがな・カタカナ）で入力してください"
+            first_name:
+              blank: "を入力してください"
+              invalid: "は全角（漢字・ひらがな・カタカナ）で入力してください"
+            last_name_kana:
+              blank: "を入力してください"
+              invalid: "は全角カタカナで入力してください"
+            first_name_kana:
+              blank: "を入力してください"
+              invalid: "は全角カタカナで入力してください"
+            birthday:
+              blank: "を入力してください"
+
   date:
     abbr_day_names:
     - 日

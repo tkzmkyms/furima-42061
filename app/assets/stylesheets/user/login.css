@@ -18,3 +18,12 @@
   text-align: center;
   color: red;
 }
+
+.form-wrap {
+  width: 400px;          /* フォームの幅を固定 */
+  margin: 50px auto 0;   /* 上に余白50px、左右は自動で中央寄せ */
+  padding: 20px;
+  background-color: #fff; /* 任意で背景色 */
+  border-radius: 8px;    /* 任意で角丸 */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 任意で影をつける */
+}
