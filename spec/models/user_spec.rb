@@ -74,6 +74,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('パスワードは半角英数字混合で入力してください')
       end
 
+      it 'パスワードが全角だと登録できない' do
+        @user.password = 'ＡＢＣ１２３' # 全角英数字
+        @user.password_confirmation = 'ＡＢＣ１２３'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('パスワードは半角英数字混合で入力してください')
+      end
+
       # ニックネーム
       it 'ニックネームが空では登録できない' do
         @user.nickname = ''
