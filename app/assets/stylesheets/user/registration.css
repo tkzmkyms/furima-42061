@@ -158,3 +158,27 @@
   text-align: right;
   cursor: pointer;
 }
+
+.error-alert {
+  width: 80%;
+  margin: 20px auto;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 7px;
+  color: #cc0000;
+}
+
+.error-alert ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.error-message {
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
