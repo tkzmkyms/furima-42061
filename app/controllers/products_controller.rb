@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: '出品が完了しました'
     else
       # バリデーションエラーの場合は再度出品ページを表示
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
