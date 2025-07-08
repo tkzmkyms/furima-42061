@@ -130,7 +130,7 @@
     <% if @products.any? %>
   <% @products.each do |product| %>
     <li class='list'>
-      <%= link_to "#" do %>
+      <%= link_to product_path(product) do %>
         <div class='item-img-content'>
           <% if product.image.attached? %>
             <%= image_tag product.image, class: "item-img" %>

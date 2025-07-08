@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_05_214305) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_08_081336) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_05_214305) do
   create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", charset: "utf8mb3", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_orders_on_product_id"
   end
 
   create_table "prefectures", charset: "utf8mb3", force: :cascade do |t|
@@ -99,5 +106,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_05_214305) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "orders", "products"
   add_foreign_key "products", "users"
 end
