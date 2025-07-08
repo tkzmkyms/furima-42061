@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_form_collections, only: [:new, :edit, :update]
   before_action :move_to_root_path, only: [:edit, :update]
 
   def index
@@ -17,11 +18,6 @@ class ProductsController < ApplicationController
 
   def edit
     # @product は set_product で取得済み
-    @categories = Category.all
-    @statuses = Status.all
-    @shipping_fee_statuses = ShippingFeeStatus.all
-    @prefectures = Prefecture.all
-    @scheduled_deliveries = ScheduledDelivery.all
   end
 
   def update
@@ -29,6 +25,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to @product, notice: '商品情報を更新しました'
     else
+      set_form_collections
       render :edit, status: :unprocessable_entity
     end
   end
@@ -40,6 +37,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path, notice: '出品が完了しました'
     else
+      set_form_collections
       render :new, status: :unprocessable_entity
     end
   end
@@ -61,4 +59,12 @@ class ProductsController < ApplicationController
       :image
     )
   end
+end
+
+def set_form_collections
+  @categories = Category.all
+  @statuses = Status.all
+  @shipping_fee_statuses = ShippingFeeStatus.all
+  @prefectures = Prefecture.all
+  @scheduled_deliveries = ScheduledDelivery.all
 end
