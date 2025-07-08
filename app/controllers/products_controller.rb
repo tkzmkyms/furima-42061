@@ -15,6 +15,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
   def create
     # フォームから送信されたデータでProductの新規レコードを作成
     @product = Product.new(product_params)
