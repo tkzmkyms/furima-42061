@@ -17,6 +17,11 @@ class ProductsController < ApplicationController
 
   def edit
     # @product は set_product で取得済み
+    @categories = Category.all
+    @statuses = Status.all
+    @shipping_fee_statuses = ShippingFeeStatus.all
+    @prefectures = Prefecture.all
+    @scheduled_deliveries = ScheduledDelivery.all
   end
 
   def update
