@@ -1,38 +1,53 @@
 class ProductsController < ApplicationController
-  # ログインしていないユーザーはnewアクションにアクセスできないようにする
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update]
+  before_action :move_to_root_path, only: [:edit, :update]
 
   def index
     @products = Product.all.order(created_at: :desc)
   end
 
   def new
-    # 新規商品の空インスタンスを作成（フォーム用）
     @product = Product.new
   end
 
   def show
-    @product = Product.find(params[:id])
+    # @product は set_product で取得済み
   end
 
   def edit
-    @product = Product.find(params[:id])
+    # @product は set_product で取得済み
+  end
+
+  def update
+    # @product は set_product で取得済み
+    if @product.update(product_params)
+      redirect_to @product, notice: '商品情報を更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def create
-    # フォームから送信されたデータでProductの新規レコードを作成
     @product = Product.new(product_params)
-    @product.user = current_user # 出品者をログインユーザーに設定
+    @product.user = current_user
 
     if @product.save
       redirect_to root_path, notice: '出品が完了しました'
     else
-      # バリデーションエラーの場合は再度出品ページを表示
       render :new, status: :unprocessable_entity
     end
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def move_to_root_path
+    redirect_to root_path unless current_user == @product.user
+  end
 
   def product_params
     params.require(:product).permit(
