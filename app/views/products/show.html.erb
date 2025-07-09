@@ -36,7 +36,7 @@
     <%# 出品者本人なら「編集」「削除」ボタンを表示 %>
     <%= link_to "商品の編集", edit_product_path(@product), class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", "#", class: "item-destroy" %>
+    <%= link_to "削除", product_path(@product), method: :delete, class: "item-destroy" %>
   <% else %>
     <%# 出品者以外のログインユーザーなら「購入」ボタンを表示 %>
     <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
