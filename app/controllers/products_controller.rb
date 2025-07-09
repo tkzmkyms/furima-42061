@@ -59,12 +59,12 @@ class ProductsController < ApplicationController
       :image
     )
   end
-end
 
-def set_form_collections
-  @categories = Category.all
-  @statuses = Status.all
-  @shipping_fee_statuses = ShippingFeeStatus.all
-  @prefectures = Prefecture.all
-  @scheduled_deliveries = ScheduledDelivery.all
+  def set_form_collections
+    @categories = Category.all
+    @statuses = Status.all
+    @shipping_fee_statuses = ShippingFeeStatus.all
+    @prefectures = Prefecture.all
+    @scheduled_deliveries = ScheduledDelivery.all
+  end
 end
