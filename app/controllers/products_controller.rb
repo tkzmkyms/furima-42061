@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_form_collections, only: [:new, :edit, :update]
   before_action :move_to_root_path, only: [:edit, :update]
 
@@ -39,6 +39,15 @@ class ProductsController < ApplicationController
     else
       set_form_collections
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if current_user == @product.user
+      @product.destroy
+      redirect_to root_path, notice: '商品を削除しました'
+    else
+      redirect_to root_path, alert: '削除権限がありません'
     end
   end
 
