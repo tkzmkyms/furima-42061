@@ -27,15 +27,16 @@ const pay = () => {
     e.preventDefault();
     console.log("購入ボタンが押された！");
 
+    // トークン作成処理
     payjp.createToken(numberElement).then((response) => {
       if (response.error) {
         alert("カード情報が正しくありません");
+        console.error("Token取得失敗", response.error);
         return;
       }
 
       console.log("Token取得成功");
-      console.log(response); // ← 確認用
-
+      console.log(response); // ← ここでカード情報取得結果をコンソールで確認
 
       const token = response.id;
       const tokenObj = `<input value="${token}" type="hidden" name="order_address[token]">`;
