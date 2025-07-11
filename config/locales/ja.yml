@@ -228,3 +228,19 @@ ja:
         password_blank: "パスワードを入力してください"
         password_too_short: "パスワードは6文字以上で入力してください"
         password_confirmation_mismatch: "パスワード（確認用）とパスワードの入力が一致しません"
+
+  activemodel:
+    attributes:
+      order_address:
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        address: 番地
+        phone_number: 電話番号
+        token: クレジットカード情報
+    errors:
+      models:
+        order_address:
+          attributes:
+            token:
+              blank: "を入力してください"

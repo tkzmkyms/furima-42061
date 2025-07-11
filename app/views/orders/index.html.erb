@@ -30,6 +30,16 @@
       </p>
     </div>
     <%# /支払額の表示 %>
+    <% if @order_address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order_address.errors.count, "件のエラー") %>が発生しました:</h2>
+    <ul>
+      <% @order_address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
     <%= form_with model: @order_address, url: product_orders_path(@product), local: true, class: 'transaction-form-wrap', id: 'charge-form', data: { turbo: false } do |f| %>
     <%# カード情報の入力 %>
