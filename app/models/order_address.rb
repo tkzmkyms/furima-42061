@@ -9,7 +9,7 @@ class OrderAddress
   with_options presence: true do
     validates :user_id
     validates :product_id
-    # validates :token
+    validates :token
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は「3桁-4桁」の形式で入力してください' }
     validates :prefecture_id, numericality: { other_than: 0, message: 'を選択してください' }
     validates :city
