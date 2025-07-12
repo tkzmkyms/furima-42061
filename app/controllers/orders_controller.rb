@@ -1,17 +1,29 @@
 class OrdersController < ApplicationController
   def index
-    @product = Product.find(params[:product_id]) # 追加：商品情報を取得
+    @product = Product.find(params[:product_id])
     @order_address = OrderAddress.new
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
-
+    @product = Product.find(params[:product_id])
     if @order_address.valid?
+      Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY')
+
+      begin
+        Payjp::Charge.create(
+          amount: @product.price,
+          card: order_params[:token],
+          currency: 'jpy'
+        )
+      rescue Payjp::PayjpError => e
+        flash[:alert] = "決済処理に失敗しました。#{e.message}"
+        render :index and return
+      end
+
       @order_address.save
       redirect_to root_path
     else
-      @product = Product.find(params[:product_id]) # バリデーション失敗時も@productが必要なので追加
       render :index
     end
   end
