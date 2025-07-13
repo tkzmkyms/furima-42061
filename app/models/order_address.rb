@@ -38,3 +38,12 @@ class OrderAddress
     Rails.logger.debug ">>> Address saved: #{address.persisted?} | ID: #{address.id}"
   end
 end
+
+require 'rails_helper'
+
+RSpec.describe OrderAddress, type: :model do
+  before do
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
+    @order_address = FactoryBot.build(:order_address, user_id: user.id, product_id: product.id)
+  end
