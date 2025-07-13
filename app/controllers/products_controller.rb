@@ -58,7 +58,11 @@ class ProductsController < ApplicationController
   end
 
   def move_to_root_path
-    redirect_to root_path unless current_user == @product.user
+    # 出品者でなければトップへ
+    # 売却済み商品は編集不可のためトップへ
+    return unless current_user != @product.user || @product.order.present?
+
+    redirect_to root_path
   end
 
   def product_params
