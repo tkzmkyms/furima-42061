@@ -1,12 +1,15 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_product
+  before_action :redirect_if_invalid_access
+
   def index
-    @product = Product.find(params[:product_id])
     @order_address = OrderAddress.new
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
-    @product = Product.find(params[:product_id])
+
     if @order_address.valid?
       Payjp.api_key = ENV.fetch('PAYJP_SECRET_KEY')
 
@@ -30,10 +33,20 @@ class OrdersController < ApplicationController
 
   private
 
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+
+  def redirect_if_invalid_access
+    return unless @product.user_id == current_user.id || @product.order.present?
+
+    redirect_to root_path
+  end
+
   def order_params
     params.require(:order_address).permit(
       :postal_code, :prefecture_id, :city, :address,
       :building, :phone_number, :token
-    ).merge(user_id: current_user.id, product_id: params[:product_id])
+    ).merge(user_id: current_user.id, product_id: @product.id)
   end
 end
