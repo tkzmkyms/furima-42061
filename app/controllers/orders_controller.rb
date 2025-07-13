@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def redirect_if_invalid_access
+    # 出品者自身、または売却済み商品の場合はトップページへリダイレクト
     return unless @product.user_id == current_user.id || @product.order.present?
 
     redirect_to root_path
