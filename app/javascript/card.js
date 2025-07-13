@@ -28,6 +28,7 @@ const pay = () => {
     e.preventDefault(); // フォームの通常送信をキャンセル
     console.log("購入ボタンが押された！");
 
+
     // Payjpにカード情報のトークンを作成依頼（numberElementを渡す）
     payjp.createToken(numberElement).then((response) => {
       if (response.error) {
