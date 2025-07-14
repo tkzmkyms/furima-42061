@@ -5,17 +5,8 @@ RSpec.describe OrderAddress, type: :model do
     @user = FactoryBot.create(:user)
     @product = FactoryBot.create(:product)
     sleep 0.1 # DBが重なるのを防止するため
-    @order_address = OrderAddress.new(
-      user_id: @user.id,
-      product_id: @product.id,
-      token: 'tok_abcdefghijk00000000000000000',
-      postal_code: '123-4567',
-      prefecture_id: 2,
-      city: '横浜市',
-      address: '青山1-1-1',
-      building: '柳ビル103',
-      phone_number: '09012345678'
-    )
+
+    @order_address = FactoryBot.build(:order_address, user_id: @user.id, product_id: @product.id)
   end
 
   context '内容に問題がない場合' do
