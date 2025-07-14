@@ -5,90 +5,90 @@ RSpec.describe Product, type: :model do
     @product = FactoryBot.build(:product)
   end
 
-  describe '商品出品機能' do
-    context '出品できる場合' do
-      it 'すべての項目が正しく入力されていれば保存できる' do
+  describe 'Product listing feature' do
+    context 'when listing is possible' do
+      it 'is valid with all required attributes correctly filled' do
         expect(@product).to be_valid
       end
     end
 
-    context '出品できない場合' do
-      it 'nameが空では保存できない' do
+    context 'when listing is not possible' do
+      it 'is invalid without a name' do
         @product.name = ''
         @product.valid?
-        expect(@product.errors.full_messages).to include('Nameを入力してください')
+        expect(@product.errors.full_messages).to include("Name can't be blank")
       end
 
-      it 'descriptionが空では保存できない' do
+      it 'is invalid without a description' do
         @product.description = ''
         @product.valid?
-        expect(@product.errors.full_messages).to include('Descriptionを入力してください')
+        expect(@product.errors.full_messages).to include("Description can't be blank")
       end
 
-      it 'priceが空では保存できない' do
+      it 'is invalid without a price' do
         @product.price = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include('Priceを入力してください')
+        expect(@product.errors.full_messages).to include("Price can't be blank")
       end
 
-      it 'priceが299以下では保存できない' do
+      it 'is invalid if price is less than 300' do
         @product.price = 299
         @product.valid?
-        expect(@product.errors.full_messages).to include('Priceは¥300〜¥9,999,999の間で入力してください')
+        expect(@product.errors.full_messages).to include('Price is not included in the list')
       end
 
-      it 'priceが10000000以上では保存できない' do
+      it 'is invalid if price is greater than 9,999,999' do
         @product.price = 10_000_000
         @product.valid?
-        expect(@product.errors.full_messages).to include('Priceは¥300〜¥9,999,999の間で入力してください')
+        expect(@product.errors.full_messages).to include('Price is not included in the list')
       end
 
-      it 'priceが半角数字以外では保存できない（全角数字）' do
+      it 'is invalid if price contains non-half-width digits (full-width digits)' do
         @product.price = '１０００'
         @product.valid?
-        expect(@product.errors.full_messages).to include('Priceは半角数字で入力してください')
+        expect(@product.errors.full_messages).to include('Price is not a number')
       end
 
-      it 'category_idが1では保存できない' do
+      it 'is invalid if category_id is 1 (unselected)' do
         @product.category_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Categoryを選択してください')
+        expect(@product.errors.full_messages).to include('Category must be other than 1')
       end
 
-      it 'status_idが1では保存できない' do
+      it 'is invalid if status_id is 1 (unselected)' do
         @product.status_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Statusを選択してください')
+        expect(@product.errors.full_messages).to include('Status must be other than 1')
       end
 
-      it 'shipping_fee_status_idが1では保存できない' do
+      it 'is invalid if shipping_fee_status_id is 1 (unselected)' do
         @product.shipping_fee_status_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Shipping fee statusを選択してください')
+        expect(@product.errors.full_messages).to include('Shipping fee status must be other than 1')
       end
 
-      it 'prefecture_idが1では保存できない' do
+      it 'is invalid if prefecture_id is 1 (unselected)' do
         @product.prefecture_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Prefectureを選択してください')
+        expect(@product.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
-      it 'scheduled_delivery_idが1では保存できない' do
+      it 'is invalid if scheduled_delivery_id is 1 (unselected)' do
         @product.scheduled_delivery_id = 1
         @product.valid?
-        expect(@product.errors.full_messages).to include('Scheduled deliveryを選択してください')
+        expect(@product.errors.full_messages).to include('Scheduled delivery must be other than 1')
       end
 
-      it 'imageが添付されていないと保存できない' do
+      it 'is invalid without an attached image' do
         @product.image = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include('Imageを添付してください')
+        expect(@product.errors.full_messages).to include("Image can't be blank")
       end
 
-      it 'userが紐づいていないと保存できない' do
+      it 'is invalid without an associated user' do
         @product.user = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include('Userを入力してください')
+        expect(@product.errors.full_messages).to include('User must exist')
       end
     end
   end

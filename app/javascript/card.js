@@ -28,8 +28,8 @@ const pay = () => {
     // Payjpにカード情報のトークンを作成依頼（numberElementを渡す）
     payjp.createToken(numberElement).then((response) => {
       if (response.error) {
-        // トークン作成失敗時のエラーハンドリング
-        alert("カード情報が正しくありません");
+       // ここでは何もしない（またはメッセージを表示しても良いが送信は止めない）
+        form.submit(); // トークン無しで送信させる
         return;
       }
 

@@ -11,6 +11,10 @@ module Furima42061
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # ロケール設定：英語をデフォルトにし、日本語も許可
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :ja]
+
     #config.i18n.default_locale = :ja
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
