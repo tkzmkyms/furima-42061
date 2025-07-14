@@ -139,7 +139,9 @@
           <% end %>
             <%# 売却済みなら「SOLD OUT」を表示 %>
           <% if product.order.present? %>
-            <div class="sold-out">SOLD OUT</div>
+            <div class="sold-out">
+              <span>Sold Out!!</span>
+            </div>
           <% end %>
         </div>
         <div class='item-info'>
