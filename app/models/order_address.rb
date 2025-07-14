@@ -19,11 +19,8 @@ class OrderAddress
 
   # 保存処理
   def save
-    Rails.logger.debug '>>> OrderAddress#save start'
-
     # 購入情報を保存（Orderテーブル）
     order = Order.create(user_id: user_id, product_id: product_id)
-    Rails.logger.debug ">>> Order saved: #{order.persisted?} | ID: #{order.id}"
 
     # 発送先情報を保存（Addressテーブル）
     address = Address.create(
@@ -35,6 +32,5 @@ class OrderAddress
       phone_number: phone_number,
       order_id: order.id
     )
-    Rails.logger.debug ">>> Address saved: #{address.persisted?} | ID: #{address.id}"
   end
 end
