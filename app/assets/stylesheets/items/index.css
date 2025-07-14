@@ -308,4 +308,7 @@ a {
   font-size: 2vh;
 }
 
+.item-img-content {
+  position: relative;
+}
 /* //商品一覧 */
