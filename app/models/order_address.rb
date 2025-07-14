@@ -10,11 +10,11 @@ class OrderAddress
     validates :user_id
     validates :product_id
     validates :token
-    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は「3桁-4桁」の形式で入力してください' }
-    validates :prefecture_id, numericality: { other_than: 0, message: 'を選択してください' }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/ }
+    validates :prefecture_id, numericality: { other_than: 0 }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は10〜11桁の半角数字で入力してください' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/ }
   end
 
   # 保存処理
