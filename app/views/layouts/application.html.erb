@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Furima</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <script src="https://js.pay.jp/v2/pay.js"></script>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-  <%= javascript_import_module_tag "application", "data-turbo-track": "reload" %>
 </head>
 
 <body>
-  <header>
-    <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしますか？" } %>
-    <% end %>
-  </header>
-
   <%= yield %>
 </body>
-</html>
 
+</html>
