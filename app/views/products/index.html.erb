@@ -148,7 +148,7 @@
           <h3 class='item-name'><%= product.name %></h3>
           <div class='item-price'>
             <span>
-              <%= number_to_currency(product.price, unit: "円", precision: 0) %><br>
+              <%= "#{product.price}円" %><br>
               <%= product.shipping_fee_status.name if product.shipping_fee_status.present? %>
             </span>
             <div class='star-btn'>

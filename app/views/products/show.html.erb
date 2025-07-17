@@ -21,7 +21,7 @@
 
     <div class="item-price-box">
       <span class="item-price">
-        <%= number_to_currency(@product.price, unit: "¥", precision: 0, format: "%u%n") %>
+         ¥<%= @product.price %>
       </span>
       <span class="item-postage">
         <%= @product.shipping_fee_status.name %>
