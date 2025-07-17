@@ -15,10 +15,4 @@ class User < ApplicationRecord
     validates :last_name_kana,  format: { with: /\A[ァ-ヶー－]+\z/, message: 'must be full-width Katakana characters' }
     validates :birthday
   end
-
-  private
-
-  def password_required?
-    password.present? || password_confirmation.present?
-  end
 end
