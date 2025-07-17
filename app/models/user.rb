@@ -16,13 +16,6 @@ class User < ApplicationRecord
     validates :birthday
   end
 
-  # パスワード（6文字以上、英数字混合）
-  VALID_PASSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
-  validates :password,
-            presence: true,
-            format: { with: VALID_PASSWORD_REGEX, message: 'must include both letters and numbers' },
-            if: :password_required?
-
   private
 
   def password_required?
